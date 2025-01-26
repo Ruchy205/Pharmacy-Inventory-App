@@ -59,11 +59,11 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`ID`, `NAME`, `CONTACT_NUMBER`, `ADDRESS`, `DOCTOR_NAME`, `DOCTOR_ADDRESS`) VALUES
-(4, 'Kiran Suthar', '1234567690', 'Andheri East', 'Anshari', 'Andheri East'),
-(6, 'Aditya', '7365687269', 'Virar West', 'Xyz', 'Virar West'),
-(11, 'Shivam Tiwari', '6862369896', 'Dadar West', 'Dr Kapoor', 'Dadar East'),
-(13, 'Varsha Suthar', '7622369694', 'Rani Station', 'Dr Ramesh', 'Rani Station'),
-(14, 'Prakash Bhattarai', '9802851472', 'Pokhara-16, Dhikidada', 'Hari Bahadur', 'Matepani-12');
+(4, 'Emmanuel Kennedy', '0809984567', 'Obollo Afor', 'Stephen', 'Obollo Afor'),
+(6, 'Gideon', '0706568726', 'Enugu-Ezike', 'Chukwuka', 'Enugu-Ezike'),
+(11, 'Kenneth Okoro', '0801236989', 'Obukpa', 'Emenike', 'Obukpa'),
+(13, 'Jaden Okonkwo', '0702236969', 'Ozalla', 'Dr Ikenna', 'Ozalla'),
+(14, 'Linda', '0900285147', 'Odenigwe', 'Dr Grace', 'Odenigwe');
 
 -- --------------------------------------------------------
 
@@ -85,8 +85,8 @@ CREATE TABLE `invoices` (
 --
 
 INSERT INTO `invoices` (`INVOICE_ID`, `NET_TOTAL`, `INVOICE_DATE`, `CUSTOMER_ID`, `TOTAL_AMOUNT`, `TOTAL_DISCOUNT`) VALUES
-(1, 30, '2021-10-19', 14, 30, 0),
-(2, 2626, '2021-10-19', 6, 2626, 0);
+(1, 30, '2024-10-19', 14, 30, 0),
+(2, 2626, '2024-10-19', 6, 2626, 0);
 
 -- --------------------------------------------------------
 
@@ -108,33 +108,41 @@ CREATE TABLE `medicines` (
 
 INSERT INTO `medicines` (`ID`, `NAME`, `PACKING`, `GENERIC_NAME`, `SUPPLIER_NAME`) VALUES
 (1, 'Nicip Plus', '10tab', 'Paracetamole', 'BDPL PHARMA'),
-(2, 'Crosin', '10tab', 'Hdsgvkvajkcbja', 'Kiran Pharma'),
-(4, 'Dolo 650', '15tab', 'paracetamole', 'BDPL PHARMA'),
-(5, 'Gelusil', '10tab', 'mint fla', 'Desai Pharma');
+(2, 'Crosin', '10tab', 'Etoricoxib', 'Kiljoy Pharmacy'),
+(3, 'Dolo 650', '15tab', 'paracetamole', 'BDPL PHARMA'),
+(4, 'Combiflam', '10tab', 'Ibuprofen', 'BDPL PHARMA'),
+(5, 'Voveran', '15tab', 'Diclofenac', 'Grace Pharmacy'),
+(6, 'Zithromax', '15tab', 'Azithromycin', 'Stephen Pharmacy'),
+(7, 'Avil', '10tab', 'Pheniramine Maleate', 'Pharmacy Pro'),
+(8, 'Cetzine', '15tab', 'Levocetirizine', 'RXMaster'),
+(9, 'Glycomet', '15tab', 'Metformin', 'RXMaster'),
+(10, 'Brufen', '10tab', 'ibuprofen', 'SS Distributors');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `medicines_stock`
 --
-
 CREATE TABLE `medicines_stock` (
   `ID` int(11) NOT NULL,
   `NAME` varchar(100) COLLATE utf16_bin NOT NULL,
   `BATCH_ID` varchar(20) COLLATE utf16_bin NOT NULL,
   `EXPIRY_DATE` varchar(10) COLLATE utf16_bin NOT NULL,
   `QUANTITY` int(11) NOT NULL,
+  `MRP` double NOT NULL,
+  `RATE` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_bin;
+
 
 --
 -- Dumping data for table `medicines_stock`
 --
 
-INSERT INTO `medicines_stock` (`ID`, `NAME`, `BATCH_ID`, `EXPIRY_DATE`, `QUANTITY`) VALUES
-(1, 'Crosin', 'CROS12', '12/34', 2),
-(2, 'Gelusil', 'G327', '12/42', 0),
-(3, 'Dolo 650', 'DOLO327', '01/23', 3),
-(4, 'Nicip Plus', 'NI325', '05/22', 3);
+INSERT INTO `medicines_stock` (`ID`, `NAME`, `BATCH_ID`, `EXPIRY_DATE`, `QUANTITY`, `MRP`, `RATE`) VALUES
+(1, 'Crosin', 'CROS12', '12/34', 2, 5000, 4500),
+(2, 'Gelusil', 'G327', '12/42', 0, 9000, 7000),
+(3, 'Dolo 650', 'DOLO327', '01/23', 3, 11000, 9000),
+(4, 'Nicip Plus', 'NI325', '05/22', 3, 10000, 5000);
 
 -- --------------------------------------------------------
 
@@ -172,7 +180,7 @@ CREATE TABLE `suppliers` (
 INSERT INTO `suppliers` (`ID`, `NAME`, `EMAIL`, `CONTACT_NUMBER`, `ADDRESS`) VALUES
 (1, 'Grace Pharmacy', 'gracepharm@gmail.com', '0908724242', 'Enugu Road'),
 (2, 'BDPL PHARMA', 'bdpl@gmail.com', '0806998867', 'Ibagwa Road'),
-(9, 'Killjoy Pharmacy', 'killpharma@gmail.com', '0908683637', 'Odenigbo Street'),
+(9, 'Kiljoy Pharmacy', 'kilpharma@gmail.com', '0908683637', 'Odenigbo Street'),
 (10, 'Stephen Pharmacy', 'stepharm@gmail.com', '0907355538', 'Barracks Local'),
 (11, 'Kings Pharmacy', 'kingspharm@gmail.com', '0905734385', 'Ozalla Local'),
 (12, 'SS Distributors', 'ssdis@gamil.com', '0803867868', 'Maduka Residence'),

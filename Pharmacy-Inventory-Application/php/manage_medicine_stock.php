@@ -20,7 +20,9 @@
       $batch_id = $_GET["batch_id"];
       $expiry_date = ucwords($_GET["expiry_date"]);
       $quantity = ucwords($_GET["quantity"]);
-      updateMedicineStock($id, $batch_id, $expiry_date, $quantity);
+      $mrp = ucwords($_GET["mrp"]);
+      $rate = ucwords($_GET["rate"]);
+      updateMedicineStock($id, $batch_id, $expiry_date, $quantity, $mrp, $rate);
     }
 
     if(isset($_GET["action"]) && $_GET["action"] == "cancel")
@@ -57,6 +59,8 @@
       <td><?php echo $row['EXPIRY_DATE']; ?></td>
       <td><?php echo $row['SUPPLIER_NAME']; ?></td>
       <td><?php echo $row['QUANTITY']; ?></td>
+      <td><?php echo $row['MRP']; ?></td>
+      <td><?php echo $row['RATE']; ?></td>
       <td>
         <button href="" class="btn btn-info btn-sm" onclick="editMedicineStock('<?php echo $row['BATCH_ID']; ?>');">
           <i class="fa fa-pencil"></i>
@@ -93,6 +97,14 @@ function showEditOptionsRow($seq_no, $row) {
       <code class="text-danger small font-weight-bold float-right" id="quantity_error" style="display: none;"></code>
     </td>
     <td>
+      <input type="number" class="form-control" value="<?php echo $row['MRP']; ?>" placeholder="MRP" id="mrp" onkeyup="checkValue(this.value, 'mrp_error');">
+      <code class="text-danger small font-weight-bold float-right" id="mrp_error" style="display: none;"></code>
+    </td>
+    <td>
+      <input type="number" class="form-control" value="<?php echo $row['RATE']; ?>" placeholder="Rate" id="rate" onkeyup="checkValue(this.value, 'rate_error');">
+      <code class="text-danger small font-weight-bold float-right" id="rate_error" style="display: none;"></code>
+    </td>
+    <td>
       <button href="" class="btn btn-success btn-sm" onclick="updateMedicineStock(<?php echo $row[5]; ?>);">
         <i class="fa fa-edit"></i>
       </button>
@@ -106,7 +118,7 @@ function showEditOptionsRow($seq_no, $row) {
 
 function updateMedicineStock($id, $batch_id, $expiry_date, $quantity, $mrp, $rate) {
   require "db_connection.php";
-  $query = "UPDATE medicines_stock SET BATCH_ID = '$batch_id', EXPIRY_DATE = '$expiry_date', QUANTITY = $quantity WHERE ID = $id";
+  $query = "UPDATE medicines_stock SET BATCH_ID = '$batch_id', EXPIRY_DATE = '$expiry_date', QUANTITY = $quantity, MRP = $mrp, RATE = $rate WHERE ID = $id";
   $result = mysqli_query($con, $query);
   if(!empty($result))
     showMedicinesStock("0");

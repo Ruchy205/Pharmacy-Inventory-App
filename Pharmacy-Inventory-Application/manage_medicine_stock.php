@@ -60,6 +60,8 @@
                     <th style="width: 8%;">Ex. Date (mm/yy)</th>
             				<th style="width: 15%;">Supplier</th>
                     <th style="width: 7%;">Qty.</th>
+                    <th style="width: 8%;">M.R.P.</th>
+                    <th style="width: 8%;">Rate</th>
                     <th style="width: 10%;">Action</th>
             			</tr>
             		</thead>
